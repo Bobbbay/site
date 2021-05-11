@@ -1,0 +1,13 @@
+name: Bob's site
+version: "0.1"
+about: My personal website/portfolio
+author: Bobbbay B. <abatterysingle@gmail.com>
+
+settings:
+  - ArgRequiredElseHelp
+
+subcommands:
+  - run:
+      about: Runs the webserver.
+  - build_posts:
+      about: Manually builds `posts/*.md` files into `serve/*.html` files.

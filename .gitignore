@@ -1,2 +1,8 @@
 /target
 /result
+
+serve/blog/*
+
+/.direnv
+/.idea
+/.vscode

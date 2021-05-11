@@ -1,21 +1,34 @@
 {
   inputs = {
-    utils.url = "github:numtide/flake-utils";
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    naersk = {
-      url = "github:nmattia/naersk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    fenix.url = "github:nix-community/fenix";
+    naersk.url = "github:nmattia/naersk";
   };
 
-  outputs = { self, fenix, utils, naersk, nixpkgs }:
-    utils.lib.eachDefaultSystem (system: {
-      defaultPackage = (naersk.lib.${system}.override {
-        inherit (fenix.packages.${system}.minimal) cargo rustc;
-      }).buildPackage { src = ./.; };
-    });
+  outputs = { self, nixpkgs, utils, fenix, naersk }:
+  with builtins;
+  utils.lib.systemFlake {
+    inherit self inputs;
+
+		channels.nixpkgs = { input = nixpkgs; };
+
+    defaultPackage = {
+      x86_64-linux = ((naersk.lib.x86_64-linux.override {
+        inherit (fenix.packages.x86_64-linux.minimal) cargo rustc;
+	    }).buildPackage {
+        src = ./.;
+        nativeBuildInputs = [ nixpkgs.legacyPackages.x86_64-linux.pandoc ];
+      });
+    };
+
+		devShellBuilder = channels:
+		  with channels.nixpkgs;
+		  mkShell {
+		    buildInputs = [
+		      pandoc
+		      diesel-cli
+		    ];
+		  };
+  };
 }

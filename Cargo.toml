@@ -4,4 +4,8 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-rocket = "0.4.7"
+anyhow = "1.0.40" # Errorz
+clap = { version = "2.33.3", features = ["yaml"] } # Command line apps go brrrrrrr
+rocket = "0.4.7" # The webserver
+rocket_contrib = "0.4.7" # Giving the webserver superpowers
+pandoc = "0.8.4" # .md -> .html
