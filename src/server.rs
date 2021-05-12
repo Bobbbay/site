@@ -3,22 +3,11 @@
 use anyhow::Result;
 use rocket::response::content;
 
-#[get("/", format = "text/html")]
-fn index() -> content::Html<&'static str> {
-    content::Html(
-        "Welcome to my blog!\
-    <br/><br/>
-    !posts
-
-    Thanks for coming!
-    ",
-    )
-}
-
 /// `run` runs the Rocket.rs server.
 pub(crate) fn run() -> Result<()> {
     rocket::ignite()
-        .mount("/", routes![index])
+        // TODO: This is a great opportunity to write some more Rust code.
+        // .mount("/", routes![index])
         .mount("/", rocket_contrib::serve::StaticFiles::from("./serve"))
         .launch();
 
