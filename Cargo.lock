@@ -126,6 +126,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "bobsite"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "pandoc",
+ "rocket",
+ "rocket_contrib",
+]
+
+[[package]]
 name = "byteorder"
 version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -871,17 +882,6 @@ dependencies = [
  "cpufeatures",
  "digest",
  "opaque-debug",
-]
-
-[[package]]
-name = "site"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "pandoc",
- "rocket",
- "rocket_contrib",
 ]
 
 [[package]]

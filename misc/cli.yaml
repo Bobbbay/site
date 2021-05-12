@@ -1,6 +1,6 @@
 name: Bob's site
 version: "0.1"
-about: My personal website/portfolio
+about: My personal website/portfolio/blog.
 author: Bobbbay B. <abatterysingle@gmail.com>
 
 settings:
@@ -10,4 +10,4 @@ subcommands:
   - run:
       about: Runs the webserver.
   - build_posts:
-      about: Manually builds `posts/*.md` files into `serve/*.html` files.
+      about: Manually builds `posts/*.md` files into `serve/blog/*/index.html` files.

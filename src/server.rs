@@ -15,13 +15,6 @@ fn index() -> content::Html<&'static str> {
     )
 }
 
-#[get("/blog/<post>", format = "text/html")]
-fn post(post: String) -> content::Html<String> {
-    let content = std::fs::read_to_string(format!("./posts/{}", post + ".html")).unwrap();
-
-    content::Html(content)
-}
-
 /// `run` runs the Rocket.rs server.
 pub(crate) fn run() -> Result<()> {
     rocket::ignite()

@@ -13,9 +13,9 @@ fn main() -> Result<()> {
     let yaml = load_yaml!("../misc/cli.yaml");
     let matches = App::from(yaml).get_matches();
 
-    if let Some(ref matches) = matches.subcommand_matches("run") {
+    if let Some(ref _matches) = matches.subcommand_matches("run") {
         server::run()?;
-    } else if let Some(ref matches) = matches.subcommand_matches("build_posts") {
+    } else if let Some(ref _matches) = matches.subcommand_matches("build_posts") {
         tools::build_posts()?;
     }
 
