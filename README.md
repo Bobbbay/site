@@ -28,7 +28,7 @@ nix run .# -- run
 
 #### Without Nix
 
-Install Nix, then see [With Nix](#with nix).
+Install Nix, then see [With Nix](#with-nix).
 
 Just kidding. If you have Rust installed, you can run:
 
