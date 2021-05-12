@@ -1,4 +1,10 @@
+@font-face {
+  font-family: Iosevka;
+  src: url(iosevka-regular.ttf);
+}
+
 body {
 	background-color: black;
 	color: white;
+	font-family: Iosevka;
 }

@@ -5,8 +5,8 @@ use anyhow::Result;
 
 use std::fs::read_dir;
 
-use pandoc::OutputKind;
-use pandoc::PandocOption::{Css, Standalone};
+use pandoc::{OutputKind, PandocOption};
+use std::path::PathBuf;
 
 /// `compile_posts` compiles all `.md` files in /posts of the project directory into HTML files.
 pub(crate) fn build_posts() -> Result<()> {
@@ -38,9 +38,19 @@ pub(crate) fn build_posts() -> Result<()> {
 
         let mut pandoc = pandoc::new();
         pandoc.add_input(&post);
+        pandoc.set_toc();
         pandoc.set_output(OutputKind::File(output.clone()));
-        pandoc.add_option(Css("/css/index.css".to_string()));
-        pandoc.add_option(Standalone);
+        pandoc.add_option(PandocOption::ResourcePath(vec![
+            PathBuf::from("./serve/css"),
+            PathBuf::from("./serve/fonts"),
+        ]));
+        pandoc.add_option(PandocOption::Css("index.css".to_string()));
+        pandoc.add_option(PandocOption::Standalone);
+        pandoc.add_option(PandocOption::ShiftHeadingLevelBy(-1));
+        pandoc.add_option(PandocOption::NoWrap);
+        pandoc.add_option(PandocOption::SelfContained);
+        pandoc.add_option(PandocOption::Katex(None));
+        pandoc.add_option(PandocOption::Template(PathBuf::from("misc/html.template")));
         pandoc.execute().unwrap();
 
         println!("> Completed {:?} > {:?}", post, output);
