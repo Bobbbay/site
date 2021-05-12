@@ -1,5 +1,7 @@
 ## Site
 
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
 This is my personal website/blog/portfolio. In here, you can find the frontend/backend for the site.
 
 For reference, it's blazing fast. To do this, we use a few ~~dirty~~ hacks:
@@ -18,7 +20,11 @@ So, you want to use this site? See how it works? Be my guest.
 nix run
 ```
 
-Will provide a CLI application to run the web server or build the posts into HTML content!
+Will provide a CLI application to run the web server or build the posts into HTML content! For example, to start the webserver, we can run:
+
+```
+nix run .# -- run
+```
 
 #### Without Nix
 
@@ -32,4 +38,10 @@ cargo run
 
 To access the same command-line application.
 
-You really should be using Nix though (/s).
+For example, let's start the webserver again:
+
+```
+cargo run -- run
+```
+
+Honestly though, you should be trying Nix!
